@@ -30,3 +30,57 @@ ReactDOM.render(
     element,
     document.getElementById('root'),
 );
+
+function MyButton(props) {
+    return <button i > Button { props.name } < /button>;
+}
+
+function App() {
+    return ( <
+        div >
+        <
+        MyButton name = "Ок"
+        onclick = { onButtonClick }
+        / >
+
+        <
+        /div>
+    );
+}
+
+function onButtonClick() {
+    function handleClick(e) {
+        e.preventDefault();
+        console.log('По button кликнули.');
+    }
+
+    return ( <
+        a href = "#"
+        onClick = { handleClick } >
+        Нажми на меня <
+        /a>
+    );
+}
+
+ReactDOM.render( <
+    App / > ,
+    document.getElementById('root')
+);
+
+// function AddMsg(props) {
+//     return ( < div >
+//         <
+//         h1 > New message < /h1  >  <
+//         h2 > Сейчас { new Date().toLocaleTimeString() }. < /h2>   < /
+//         div >
+//     );
+// }
+
+// function tick() {
+//     ReactDOM.render( <
+//         AddMsg / > ,
+//         document.getElementById('root')
+//     );
+// }
+
+// setInterval(tick, 1000);
