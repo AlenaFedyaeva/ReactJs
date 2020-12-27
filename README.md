@@ -12,6 +12,8 @@ npm install webpack-dev-server@3
 
 2) Чтобы jsx babel заработали, надо добавить  в package.json 
 
+https://habr.com/ru/company/ruvds/blog/436886/
+
 "babel": {
     "presets": [
       "@babel/env",

@@ -20,7 +20,8 @@
 
 //3) Try JSX
 
-import React from 'react';
+// import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const element = < h1 className = "element" > Кажется,
@@ -32,55 +33,45 @@ ReactDOM.render(
 );
 
 function MyButton(props) {
-    return <button i > Button { props.name } < /button>;
+    const [count, setCount] = useState(0);
+    const [arr, setTheArray] = useState(["msg", ]);
+    // Similar to componentDidMount and componentDidUpdate:
+    // useEffect(() => {
+    //     // Update the document title using the browser API
+    //     document.title = `You clicked 3 ${count} times`;
+    //     // setTheArray([...arr, " new "]);
+    //     console.log(arr);
+    // });
+
+    return ( <
+        div >
+        <
+        p > You clicked { count }
+        times < /p> <
+        button onClick = {
+            () => setTheArray([...arr, " new "])
+        } >
+        Click me <
+        /button>  <
+        p > { arr } < /p> < /
+        div >
+    );
 }
 
 function App() {
     return ( <
         div >
         <
-        MyButton name = "Ок"
-        onclick = { onButtonClick }
-        / >
+        MyButton name = "Ок" / >
 
         <
         /div>
     );
 }
 
-function onButtonClick() {
-    function handleClick(e) {
-        e.preventDefault();
-        console.log('По button кликнули.');
-    }
 
-    return ( <
-        a href = "#"
-        onClick = { handleClick } >
-        Нажми на меня <
-        /a>
-    );
-}
 
 ReactDOM.render( <
     App / > ,
     document.getElementById('root')
 );
-
-// function AddMsg(props) {
-//     return ( < div >
-//         <
-//         h1 > New message < /h1  >  <
-//         h2 > Сейчас { new Date().toLocaleTimeString() }. < /h2>   < /
-//         div >
-//     );
-// }
-
-// function tick() {
-//     ReactDOM.render( <
-//         AddMsg / > ,
-//         document.getElementById('root')
-//     );
-// }
-
-// setInterval(tick, 1000);
