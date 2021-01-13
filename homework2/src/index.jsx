@@ -6,11 +6,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App.jsx'
 
-const element = < h1 className = "element" > Кажется,
-    мы подключили React < /h1>;
+const element = < h1 className="element" > Кажется,
+ мы подключили React < /h1>;
 
 ReactDOM.render(
-    element,
-    document.getElementById('root'),
+        <App />,
+        document.getElementById('root'),
 );
