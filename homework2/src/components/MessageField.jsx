@@ -16,8 +16,8 @@ export default class MessageField extends React.Component {
 
     render() {
         const msg = this.props.messages;
-        const listItems = msg.map((value, id) =>
-            <> <Message text={value} key={`k_${id}`} />
+        const listItems = msg.map(({ message, author }, id) =>
+            <> <Message message={message} author={author} key={`k_${id}`} />
                 <br key={`br_${id}`} />
             </>
         );

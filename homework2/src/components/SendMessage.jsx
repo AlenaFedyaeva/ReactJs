@@ -12,7 +12,7 @@ export default class SendMessage extends React.Component {
     };
     send = () => {
         console.log("msg=", this.state.message);
-        this.props.send(this.state.message);
+        this.props.send({ message: this.state.message, author: "me" });
         this.setState({ message: '' });
     }
 

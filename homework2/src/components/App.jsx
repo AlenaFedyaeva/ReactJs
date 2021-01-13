@@ -13,7 +13,8 @@ class App extends React.Component {
             text: 'Some text from App!',
             timeout: null,
             counter: 0,
-            messages: ['Hello!', 'Hello 2', 'How are you']
+            messages: [],
+            author: "robot"
         };
     }
     componentWillMount() {
@@ -23,14 +24,7 @@ class App extends React.Component {
 
     componentDidMount() {
         console.log('componentDidMount');
-        const timeout = setTimeout(
-            () => {
-                this.setState({ text: "text from DIDMount" });
-            },
-            2000
-        );
 
-        this.setState({ timeout });
     };
     componentWillUnmount() {
         console.log('componentWillUnmount');
@@ -39,17 +33,32 @@ class App extends React.Component {
     }
 
 
-    componentDidUpdate() {
+    componentWillUpdate() {
         console.log('componentDidUpdate');
+        if (this.state.messages.length % 2 === 1) {
+            const timeout = setTimeout(
+                () => {
+                    this.setState({ messages: [...this.state.messages, "I do nor answer.I am robot!"] });
+                    // this.setState({ author: "robot" });
+                },
+                500
+            );
+
+            this.setState({ timeout });
+        }
+
     }
 
     handleClick = () => {
         this.setState({ 'counter': this.state.counter + 1 });
         console.log("btn clicked", this.state.counter);
     }
-    send = msg => {
-        console.log("send=", msg);
-        this.setState({ messages: [...this.state.messages, msg] });
+    send = objMsg => {
+        console.log("send=", objMsg, this.state.messages, this.state.author);
+        this.setState({ messages: [...this.state.messages, objMsg.message] });
+        this.setState({ author: objMsg.author });
+        console.log("send=", objMsg, this.state.messages, this.state.author);
+
     }
     render() {
         console.log('render');
