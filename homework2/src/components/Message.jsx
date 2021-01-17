@@ -10,15 +10,12 @@ export default class Message extends React.Component {
         message: PropTypes.string.isRequired,
         author: PropTypes.string.isRequired
     };
-    static defaultProps = {
-        message: "default msg",
-        author: "default author"
-    };
-    render() {
 
+    render() {
+        // console.log("render message", this.props.message, this.props.author);
         return <div
             style={{ ...styles.message, alignSelf: this.props.author === 'robot' ? 'flex-start' : 'flex-end' }}>
-            <div>{this.props.message} author: {this.props.author}</div>
+            <div>author: {this.props.author} msg: {this.props.message} </div>
             {/* <div style={styles.author}>{this.props.author}</div> */}
         </div>;
     }

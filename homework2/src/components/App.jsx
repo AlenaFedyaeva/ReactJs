@@ -12,9 +12,10 @@ class App extends React.Component {
         this.state = {
             text: 'Some text from App!',
             timeout: null,
+            // interval: null,
             counter: 0,
             messages: [],
-            author: "robot"
+            // author: "robot"
         };
     }
     componentWillMount() {
@@ -29,50 +30,54 @@ class App extends React.Component {
     componentWillUnmount() {
         console.log('componentWillUnmount');
         clearTimeout(this.state.timeout);
+        // clearInterval(this.state.interval);
+
         this.setState({ timeout: null });
+        // this.setState({ interval: null });
     }
 
 
-    componentWillUpdate() {
-        console.log('componentDidUpdate');
-        if (this.state.messages.length % 2 === 1) {
-            const timeout = setTimeout(
-                () => {
-                    this.setState({ messages: [...this.state.messages, "I do nor answer.I am robot!"] });
-                    // this.setState({ author: "robot" });
-                },
-                500
-            );
+    componentDidUpdate() {
+        // console.log('componentDidUpdate', this.state.messages.length, this.state.messages.length % 2);
+        if (this.state.messages.length % 2 > 0) {
+            // const timeout = setTimeout(
+            //     () => {
+            this.setState({ messages: [...this.state.messages, { message: "Msg from didUpdate!", author: "robot from did update" }] });
+            //     },
+            //     1000
+            // );
 
-            this.setState({ timeout });
+            // this.setState({ timeout });
         }
-
     }
 
     handleClick = () => {
         this.setState({ 'counter': this.state.counter + 1 });
-        console.log("btn clicked", this.state.counter);
+        // console.log("btn clicked", this.state.counter);
     }
-    send = objMsg => {
-        console.log("send=", objMsg, this.state.messages, this.state.author);
-        this.setState({ messages: [...this.state.messages, objMsg.message] });
-        this.setState({ author: objMsg.author });
-        console.log("send=", objMsg, this.state.messages, this.state.author);
 
+    //Блок с timeout закомментирован, тк по условию ДЗ был использован componentDidUpdate
+    send = objMsg => {
+        this.setState({ messages: [...this.state.messages, objMsg] });
+
+        // const timeout = setTimeout(
+        //     () => {
+        //         this.setState({
+        //             messages:
+        //                 [...this.state.messages, { message: "Msg from Timeout.I am robot!", author: "robot" }]
+        //         });
+        //     },
+        //     1000
+        // );
+        // this.setState({ timeout });
     }
     render() {
-        console.log('render');
         return (
             <main>
-                {/* <h1>MessageList from classwork</h1> */}
-                {/* <MessageList messages={this.state.messages} /> */}
-                <h2>Homework MessageField</h2>
+                <h2>Homework 2 </h2>
                 <MessageField messages={this.state.messages} />
                 <SendMessage send={this.send} />
-                {/* <Message text={this.state.text} /> */}
-                {/* <Example /> */}
             </main>
-
         )
     }
 }
