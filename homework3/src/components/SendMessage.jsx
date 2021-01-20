@@ -1,7 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextField } from '@material-ui/core';
-// import { TextField } from 'material-ui'
+import { makeStyles } from '@material-ui/core/styles';
+import { TextField } from '@material-ui/core/TextField';
+
+const useStyles = makeStyles((theme) => (
+    {
+        root: {
+            '& .MuiTextField-root': {
+                margin: theme.spacing(1),
+                width: '25ch'
+            },
+        },
+        '& > *': {
+            margin: theme.spacing(1),
+        }
+    }
+));
 
 export default class SendMessage extends React.Component {
     state = {
@@ -12,7 +26,8 @@ export default class SendMessage extends React.Component {
         send: PropTypes.func.isRequired
     };
 
-    send = () => {
+    send = (event) => {
+        event.preventDefault();
         console.log('Send btn');
         this.props.send({ message: this.state.message, author: "me" });
         this.setState({ message: 'enter your text ...' });
@@ -29,7 +44,9 @@ export default class SendMessage extends React.Component {
         }
     };
     render() {
-        return <div>
+        // const classes = useStyles();
+
+        return <form>
             <textarea value={this.state.message}
                 onChange={this.onTextChange}
                 onKeyUp={this.onKey}>
@@ -37,9 +54,13 @@ export default class SendMessage extends React.Component {
             {/* <TextField
                 value={this.state.message}
                 onChange={this.onTextChange}
-                multiline={true}
-                name='message' /> */}
+                multiline
+                rowsMax={4}
+                name={'message'}
+                label="Multiline"
+                id="standart-multiline-flexible"
+            /> */}
             <button onClick={this.send}> Send </button>
-        </div>
+        </form>
     }
 }
