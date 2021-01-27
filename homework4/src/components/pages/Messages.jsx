@@ -56,9 +56,9 @@ export default class Messages extends React.Component {
                 [...this.state.messages,
                 { ...objMsg, id: newMsgId }]
         });
-        const chats = { ...this.state.chats[this.props.chatId] };
+        const chats = { ...this.state.chats };
         chats[this.props.chatId].messages.push(newMsgId);
-        debugger
+        // debugger
         this.setState({ chats: { ...chats } });
 
     }
