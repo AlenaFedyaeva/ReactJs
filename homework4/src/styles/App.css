@@ -1,9 +1,38 @@
 main {
     height: 100%;
-    width: 50%;
+    width: 80%;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+.header {
+    height: 40px;
+    width: 100%;
+    background: lemonchiffon;
+    /* width: 50%; */
+    margin: auto;
+    align-items: center;
+}
+
+.cont {
+    /* height: 400px; */
+    width: 100%;
+    background: rgb(216, 196, 17);
+    display: flex;
+}
+
+.leftcol {
+    height: 400px;
+    width: 30%;
+    background: chartreuse;
+}
+
+.rightcol {
+    text-align: center;
+    height: 400px;
+    width: 70%;
+    background: blueviolet
 }

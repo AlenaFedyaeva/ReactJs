@@ -1,17 +1,13 @@
 import React from 'react';
-import MessageField from './MessageField.jsx';
-import SendMessage from './SendMessage.jsx';
-import Messages from './pages/Messages'
+// import MessageField from './MessageField.jsx';
+// import SendMessage from './SendMessage.jsx';
+import Messages from './pages/Messages';
+import Router from './Router.jsx';
 import '../styles/App.css'
 
-import { BrowserRouter, Switch, Router, Route, Link } from "react-router-dom";
+import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 
 // import { MuiThemeProvider } from '@material-ui/core/styles';
-import Layout from './Layout.jsx';
-
-// require('react-dom');
-// window.React2 = require('react');
-// console.log(window.React1 === window.React2);
 
 export default class App extends React.Component {
     constructor(props) {
@@ -69,40 +65,45 @@ export default class App extends React.Component {
 
     render() {
         return (
-            // <MuiThemeProvider theme={this.state.theme}>
+            // <MuiThemeProvider theme={theme}>
             <main >
                 <BrowserRouter>
-                    {/* <h2>Homework 3 </h2> */}
-                    {/* <MessageField messages={this.state.messages} />
-                    <SendMessage send={this.send} /> */}
-                    {/* <nav>
-                        <Link to='/chat/1' key='kc1'> Chat 1 </Link>
-                        <Link to='/chat/2' key='kc2'> Chat 2 </Link>
-                        <Link to='/chat/3' key='kc3'> Chat 3 </Link>
-                        <Link to='/chat/4' key='kc4'> Chat 4 </Link>
-                        <Link to='/chat/5' key='kc5'> Chat 5 </Link>
-                    </nav> */}
-                    {/* <Switch> */}
-                    {/* <Route exact path="/" component={Messages} /> */}
-                    {/* <Route path="/chat/:chatId" render={obj => <Messages chatId={obj.match.params.chatId} />} /> */}
-                    {/*// <Route path='/chat/2'> <Messages chatId={2} />  </Route > */}
-                    {/* </Switch> */}
-                    <Layout />
+                    <header className='headerApp'>
+                        Homework 4
+                        </header>
+                    <div className='cont'>
+                        <div className='leftcol'>
+                            <nav>
+                                <div><Link to='/chat/1' key='kc1'> Chat 1 </Link></div>
+                                <div><Link to='/chat/2' key='kc2'> Chat 2 </Link></div>
+                                <div><Link to='/chat/3' key='kc3'> Chat 3 </Link></div>
+                                <div><Link to='/chat/4' key='kc4'> Chat 4 </Link></div>
+                                <div><Link to='/chat/5' key='kc5'> Chat 5 </Link></div>
+                            </nav>
+
+                        </div>
+                        <div className='rightcol'>
+                            <Router />
+                            {/* <Switch>
+                                <Route exact path="/" component={Messages} />
+                                <Route path="chat/:chatId" render={obj => <Messages chatId={obj.match.params.chatId} />} />
+                            </Switch> */}
+                            <h2>under route from app</h2>
+                        </div>
+                    </div>
+                    {/* <Layout /> */}
                 </BrowserRouter>
 
             </main >
-            // </MuiThemeProvider>
-            //MuiThemeProvider - Перепробовала все. Как на сайте написано не работает,
-            // из методички у меня material-ui вообще не устанавливается. (У меня Debian)
-            //Единственное что заработало, это пример ниже. В Виде функциональной
-            //компоненты, но если, например встроить в него этот класс, ничего не работает(
-
+            // {/* </MuiThemeProvider> */ }
         );
-
     }
 }
 
-// Eдинственное что заработало из  material-ui
+
+//Пробовала изменить версию как в 4 лекции   "@material-ui/core": "^4.9.3" в package.json тоже не работает с классовыми компонетами у меня 
+// Eдинственное что заработало с  material-ui в следующем ниже примере, в виде функциональной компоненты
+
 // import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 // const theme = {
@@ -117,3 +118,6 @@ export default class App extends React.Component {
 //         </MuiThemeProvider>
 //     );
 // }
+
+// Визуально появились кнопка и поле ввода, но сигнал нажатия не срабатывал
+
