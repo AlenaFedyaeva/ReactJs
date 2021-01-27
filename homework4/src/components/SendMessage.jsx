@@ -46,21 +46,13 @@ export default class SendMessage extends React.Component {
     render() {
         // const classes = useStyles();
 
-        return <form>
+        return <div>
             <textarea value={this.state.message}
                 onChange={this.onTextChange}
                 onKeyUp={this.onKey}>
             </textarea>
-            {/* <TextField
-                value={this.state.message}
-                onChange={this.onTextChange}
-                multiline
-                rowsMax={4}
-                name={'message'}
-                label="Multiline"
-                id="standart-multiline-flexible"
-            /> */}
-            <button onClick={this.send}> Send </button>
-        </form>
+
+            <button onClick={this.send} type="submit"> Send </button>
+        </div>
     }
 }

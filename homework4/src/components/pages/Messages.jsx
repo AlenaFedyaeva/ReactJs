@@ -47,18 +47,28 @@ export default class Messages extends React.Component {
 
     static defaultProps = {
         chatId: 1,
+        messages: []
     }
     send = objMsg => {
-        this.setState({ messages: [...this.state.messages, objMsg] });
+        const newMsgId = this.state.messages.length;
+        this.setState({
+            messages:
+                [...this.state.messages,
+                { ...objMsg, id: newMsgId }]
+        });
+        const chats = { ...this.state.chats[this.props.chatId] };
+        chats[this.props.chatId].messages.push(newMsgId);
+        debugger
+        this.setState({ chats: { ...chats } });
 
     }
 
     render() {
         console.log("new chat ", this.props.chatId, typeof (this.props.chatId));
         return <>
-            <h2> Chat:  {this.props.chatId}</h2>
+            <h2> Chat name:  {this.state.chats[this.props.chatId].name}</h2>
             <MessageField messages={this.state.messages.filter(
-                (item, id) => this.state.chats[this.props.chatId].messages.includes(id))} />
+                ({ id }) => this.state.chats[this.props.chatId].messages.includes(id))} />
             <SendMessage send={this.send} />
         </>;
 
