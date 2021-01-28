@@ -1,21 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from '@material-ui/core/TextField';
-
-const useStyles = makeStyles((theme) => (
-    {
-        root: {
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                width: '25ch'
-            },
-        },
-        '& > *': {
-            margin: theme.spacing(1),
-        }
-    }
-));
+// import { makeStyles } from '@material-ui/core/styles';
+// import { TextField } from '@material-ui/core/TextField';
 
 export default class SendMessage extends React.Component {
     state = {
@@ -44,15 +30,23 @@ export default class SendMessage extends React.Component {
         }
     };
     render() {
-        // const classes = useStyles();
-
-        return <div>
+        return <div style={{
+            width: '90%',
+            display: 'flex',
+            marginTop: '10px'
+        }}>
             <textarea value={this.state.message}
                 onChange={this.onTextChange}
-                onKeyUp={this.onKey}>
+                onKeyUp={this.onKey}
+                style={{ width: '70%', marginLeft: '5%' }}>
             </textarea>
 
-            <button onClick={this.send} type="submit"> Send </button>
+            <button onClick={this.send}
+                type="submit"
+                style={{
+                    width: '20%', marginLeft: '5%'
+                }}
+            > Send </button>
         </div>
     }
 }

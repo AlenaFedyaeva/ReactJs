@@ -29,8 +29,6 @@ export default class App extends React.Component {
     componentWillUnmount() {
         console.log('componentWillUnmount');
         clearTimeout(this.state.timeout);
-        // почему MuiThemeProvider не работает если расскомментировать
-        //следующую строку? 
         this.setState({ timeout: null });
     }
 
@@ -66,35 +64,35 @@ export default class App extends React.Component {
     render() {
         return (
             // <MuiThemeProvider theme={theme}>
-            <main >
-                <BrowserRouter>
-                    <header className='headerApp'>
-                        Homework 4
-                        </header>
-                    <div className='cont'>
-                        <div className='leftcol'>
-                            <nav>
-                                <div><Link to='/chat/1' key='kc1'> Chat 1 </Link></div>
-                                <div><Link to='/chat/2' key='kc2'> Chat 2 </Link></div>
-                                <div><Link to='/chat/3' key='kc3'> Chat 3 </Link></div>
-                                <div><Link to='/chat/4' key='kc4'> Chat 4 </Link></div>
-                                <div><Link to='/chat/5' key='kc5'> Chat 5 </Link></div>
-                            </nav>
 
-                        </div>
-                        <div className='rightcol'>
-                            <Router />
-                            {/* <Switch>
-                                <Route exact path="/" component={Messages} />
-                                <Route path="chat/:chatId" render={obj => <Messages chatId={obj.match.params.chatId} />} />
-                            </Switch> */}
-                            <h2>under route from app</h2>
-                        </div>
+            <BrowserRouter> <main >
+                <div className='cont'>
+                    <div className='leftcol'>
+                        <nav>
+                            <div><Link to='/' key='home'>Home page </Link> </div>
+                            <div><Link to='/num2' key='kc1'> Chat num2 </Link></div>
+                            <div><Link to='/chat/1' key='kc1'> Chat 1 </Link></div>
+                            <div><Link to='/chat/2' key='kc2'> Chat 2 </Link></div>
+                            <div><Link to='/chat/3' key='kc3'> Chat 3 </Link></div>
+                            <div><Link to='/chat/4' key='kc4'> Chat 4 </Link></div>
+                            <div><Link to='/chat/5' key='kc5'> Chat 5 </Link></div>
+                        </nav>
+
                     </div>
-                    {/* <Layout /> */}
-                </BrowserRouter>
-
-            </main >
+                    <div className='rightcol'>
+                        <Router />
+                        {/* <Switch>
+                            <Route exact path="/" component={Messages} />
+                            <Route path="/chat/:chatId" render={obj => <Messages chatId={obj.match.params.chatId} />} />
+                            <Route path="/num2">
+                                <Messages chatId={2} />
+                            </Route>
+                        </Switch>
+                        <h2>under route from app</h2> */}
+                    </div>
+                </div>
+                {/* <Layout /> */}
+            </main > </BrowserRouter>
             // {/* </MuiThemeProvider> */ }
         );
     }

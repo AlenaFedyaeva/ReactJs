@@ -65,12 +65,12 @@ export default class Messages extends React.Component {
 
     render() {
         console.log("new chat ", this.props.chatId, typeof (this.props.chatId));
-        return <>
+        return <div className={'sendmessages'} >
             <h2> Chat name:  {this.state.chats[this.props.chatId].name}</h2>
             <MessageField messages={this.state.messages.filter(
                 ({ id }) => this.state.chats[this.props.chatId].messages.includes(id))} />
             <SendMessage send={this.send} />
-        </>;
+        </div >;
 
     }
 }

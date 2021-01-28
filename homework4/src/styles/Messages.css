@@ -1,0 +1,10 @@
+.sendmessages {
+    display: flex;
+    flex-direction: column;
+    background-color: #b43b3b;
+    height: 50%;
+    width: 90%;
+    padding: 20px;
+    margin-left: 3%;
+    overflow-y: scroll;
+}

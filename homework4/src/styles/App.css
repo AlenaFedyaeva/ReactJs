@@ -11,7 +11,7 @@ main {
 .header {
     height: 40px;
     width: 100%;
-    background: lemonchiffon;
+    background: lightblue;
     /* width: 50%; */
     margin: auto;
     align-items: center;
@@ -27,12 +27,12 @@ main {
 .leftcol {
     height: 400px;
     width: 30%;
-    background: chartreuse;
+    background: rgb(185, 183, 183);
 }
 
 .rightcol {
     text-align: center;
     height: 400px;
     width: 70%;
-    background: blueviolet
+    background: rgb(220, 235, 240);
 }
