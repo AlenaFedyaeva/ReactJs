@@ -5,6 +5,7 @@ import SendMessage from '../SendMessage';
 
 export default class Messages extends React.Component {
     state = {
+        timeout: null,
         messages: [
             { message: 'message 0', author: 'robot', id: 0 },
             { message: 'message 1', author: 'robot', id: 1 },
@@ -49,6 +50,10 @@ export default class Messages extends React.Component {
         chatId: 1,
         messages: []
     }
+    componentWillUnmount() {
+        clearTimeout(this.state.timeout);
+        this.setState({ timeout: null });
+    }
     send = objMsg => {
         const newMsgId = this.state.messages.length;
         this.setState({
@@ -58,8 +63,25 @@ export default class Messages extends React.Component {
         });
         const chats = { ...this.state.chats };
         chats[this.props.chatId].messages.push(newMsgId);
-        // debugger
+        debugger
         this.setState({ chats: { ...chats } });
+
+        const timeout = setTimeout(
+            () => {
+                const newId = this.state.messages.length;
+                this.setState({
+                    messages:
+                        [...this.state.messages,
+                        { message: 'I do not answer you. I am robot', author: 'robot', id: newId }]
+                });
+                const chats = { ...this.state.chats };
+                chats[this.props.chatId].messages.push(newId);
+                this.setState({ chats: { ...chats } });
+
+            },
+            3000
+        );
+        this.setState({ timeout });
 
     }
 

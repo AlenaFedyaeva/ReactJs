@@ -20,19 +20,19 @@ main {
 .cont {
     /* height: 400px; */
     width: 100%;
-    background: rgb(216, 196, 17);
+    background: honeydew;
     display: flex;
 }
 
 .leftcol {
-    height: 400px;
+    height: 100%;
     width: 30%;
     background: rgb(185, 183, 183);
 }
 
 .rightcol {
     text-align: center;
-    height: 400px;
+    height: 100%;
     width: 70%;
     background: rgb(220, 235, 240);
 }
