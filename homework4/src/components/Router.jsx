@@ -12,6 +12,11 @@ export default class Router extends React.Component {
                 <Route path="/chat/:chatId" render={obj =>
                     <Messages chatId={obj.match.params.chatId} />
                 } />
+                <Route exact path="/profile/">
+                    <h1> profile </h1>
+                    <h3> name: User</h3>
+                    <h3> tel: 8888888888</h3>
+                </Route>
             </Switch>
         );
     }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MessageField from '../MessageField';
 import SendMessage from '../SendMessage';
 
+import { Link } from "react-router-dom";
 export default class Messages extends React.Component {
     state = {
         timeout: null,
@@ -79,7 +80,7 @@ export default class Messages extends React.Component {
                 this.setState({ chats: { ...chats } });
 
             },
-            3000
+            1000
         );
         this.setState({ timeout });
 
@@ -88,10 +89,15 @@ export default class Messages extends React.Component {
     render() {
         console.log("new chat ", this.props.chatId, typeof (this.props.chatId));
         return <div className={'sendmessages'} >
-            <h2> Chat name:  {this.state.chats[this.props.chatId].name}</h2>
+
+            <h2> Chat name:  {this.state.chats[this.props.chatId].name}
+                <span>        </span>
+                <Link to='/profile'>profile </Link>
+            </h2>
             <MessageField messages={this.state.messages.filter(
                 ({ id }) => this.state.chats[this.props.chatId].messages.includes(id))} />
             <SendMessage send={this.send} />
+
         </div >;
 
     }
