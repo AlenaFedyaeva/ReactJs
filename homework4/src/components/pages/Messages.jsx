@@ -43,8 +43,27 @@ export default class Messages extends React.Component {
         }
     };
 
+
+    constructor(props) {
+        super(props);
+        console.log('constructor', typeof (this.props.getChats));
+        const newMsgId = this.state.messages.length;
+        //         this.setState({
+        //             chats: {
+        //                 ...this.state.chats, { newMsgId: { name: this.props.chatName } }
+        //         }
+        // });
+        console.log("add new chat from message ", this.props.ttt);
+    }
+
     static propTypes = {
         chatId: PropTypes.number,
+        getChats: PropTypes.func.isRequired,
+        ttt: PropTypes.string
+    };
+    componentDidMount() {
+        console.log('componentDidMount from messages', typeof (this.props.getChats));
+        // this.props.getChats(this.state.chats);
     };
 
     static defaultProps = {
@@ -64,7 +83,7 @@ export default class Messages extends React.Component {
         });
         const chats = { ...this.state.chats };
         chats[this.props.chatId].messages.push(newMsgId);
-        debugger
+        // debugger
         this.setState({ chats: { ...chats } });
 
         const timeout = setTimeout(
@@ -87,7 +106,8 @@ export default class Messages extends React.Component {
     }
 
     render() {
-        console.log("new chat ", this.props.chatId, typeof (this.props.chatId));
+        console.log(" MESSAGEs: new chat ", this.props.chatId, typeof (this.props.chatId),
+            "add", this.props.ttt);
         return <div className={'sendmessages'} >
 
             <h2> Chat name:  {this.state.chats[this.props.chatId].name}

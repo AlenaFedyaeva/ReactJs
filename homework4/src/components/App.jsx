@@ -16,10 +16,10 @@ export default class App extends React.Component {
         };
     }
 
-    componentDidMount() {
-        console.log('componentDidMount');
+    // componentDidMount() {
+    //     console.log('componentDidMount');
 
-    };
+    // };
     componentWillUnmount() {
         console.log('componentWillUnmount');
         clearTimeout(this.state.timeout);

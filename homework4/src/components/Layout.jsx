@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Router from './Router.jsx';
 import '../styles/Layout.css'
 
@@ -8,28 +9,57 @@ export default class Layout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // text: 'Some text from App!',
-            // timeout: null,
-            // messages: [],
+            chatName: '',
+            chats: ['Chat 1',
+                'Chat 2',
+                'Chat 3',
+                'Chat 4',
+                'Chat 5']
         };
     }
+    getChats = (obj) => {
+        console.log("get chats", obj);
+    }
 
+    addChat = (event) => {
+        console.log("add chat layout");
+        this.setState({ chats: [...this.state.chats, this.state.chatName] });
+    }
+    textChanged = (event) => {
+        console.log("textchanged ", event.target.value);
+        this.setState({ chatName: event.target.value });
+    }
     render() {
         return (
             <div className='cont'>
                 <div className='leftcol'>
                     <nav>
-                        <div><Link to='/' key='home'>Home page </Link> </div>
-                        <div><Link to='/chat/1' key='kc1'> Chat 1 </Link></div>
-                        <div><Link to='/chat/2' key='kc2'> Chat 2 </Link></div>
-                        <div><Link to='/chat/3' key='kc3'> Chat 3 </Link></div>
-                        <div><Link to='/chat/4' key='kc4'> Chat 4 </Link></div>
-                        <div><Link to='/chat/5' key='kc5'> Chat 5 </Link></div>
+                        {this.state.chats.map((item, index) => {
+                            return (
+                                <div key={`kdiv_${index + 1}`}>
+                                    <Link to={`/chat/${index + 1}`}
+                                        key={`klink_${index + 1}`}> {item}</Link>
+                                </div>
+                            );
+                        })}
                     </nav>
 
+                    <div style={{ backgroundColor: "white" }}>
+                        <label> chat name</label>
+                        <textarea
+                            onChange={this.textChanged} />
+
+                        <button
+                            onClick={this.addChat}>
+                            add chat
+                                </button>
+                    </div>
                 </div>
                 <div className='rightcol'>
-                    <Router />
+                    <Router
+                        getChats={this.getChats}
+                        chatName={this.state.chatName}
+                    />
                 </div>
             </div>
         );
