@@ -11,6 +11,10 @@ export default class Router extends React.Component {
         chatName: PropTypes.string
     };
 
+    static defaultProps = {
+        chatName: ""
+    }
+
     constructor(props) {
         super(props);
         console.log("add new chat from router", this.props.chatName);
@@ -21,7 +25,8 @@ export default class Router extends React.Component {
         console.log("render router ",
             "add", this.props.chatName);
 
-
+        const chatName = this.props.chatName;
+        console.log("router render  ", chatName);
         return (
             <Switch>
                 <Route exact path="/" component={Messages} />
@@ -29,7 +34,7 @@ export default class Router extends React.Component {
                     <Messages
                         chatId={obj.match.params.chatId}
                         getChats={this.props.getChats}
-                        chatName2="___!"
+                        ttt={chatName}
                     />
                 } />
                 <Route exact path="/profile/">

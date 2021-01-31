@@ -62,13 +62,14 @@ export default class Messages extends React.Component {
         ttt: PropTypes.string
     };
     componentDidMount() {
-        console.log('componentDidMount from messages', typeof (this.props.getChats));
-        // this.props.getChats(this.state.chats);
+        console.log('componentDidMount from messages',
+            "add - ", this.props.ttt);
     };
 
     static defaultProps = {
         chatId: 1,
-        messages: []
+        messages: [],
+        ttt: ""
     }
     componentWillUnmount() {
         clearTimeout(this.state.timeout);
@@ -107,7 +108,7 @@ export default class Messages extends React.Component {
 
     render() {
         console.log(" MESSAGEs: new chat ", this.props.chatId, typeof (this.props.chatId),
-            "add", this.props.ttt);
+            "add - ", this.props.ttt);
         return <div className={'sendmessages'} >
 
             <h2> Chat name:  {this.state.chats[this.props.chatId].name}
