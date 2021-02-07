@@ -24,7 +24,7 @@ export default class App extends React.Component {
     // };
     componentWillUnmount() {
         console.log('componentWillUnmount from app');
-        debugger
+        // debugger
         // clearTimeout(this.state.timeout);
         // this.setState({ timeout: null });
     }
