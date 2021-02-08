@@ -29,7 +29,16 @@ export default class Router extends React.Component {
         let fu = this.props.getChats;
         console.log("router render  ", chatName);
         return (
+
             <Switch>
+                <Route path="/ttt">
+                    <h1>Router</h1>
+                    <Messages
+                        chatId={1}
+                        getChats={fu}
+                        ttt={chatName}
+                    />
+                </Route>
                 <Route exact path="/" render={obj =>
                     <Messages
                         chatId={1}
@@ -37,9 +46,6 @@ export default class Router extends React.Component {
                         ttt={chatName}
                     />
                 } />
-                {/* <Route exact path="/" component={Messages} /> */}
-
-
                 <Route path="/chat/:chatId" render={obj =>
                     <Messages
                         chatId={obj.match.params.chatId}

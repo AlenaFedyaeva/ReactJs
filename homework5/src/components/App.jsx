@@ -50,7 +50,7 @@ export default class App extends React.Component {
             <Provider store={initStore()}>
                 <BrowserRouter> <main >
                     <Layout />
-
+                    {/* <h2> ddd</h2> */}
                 </main > </BrowserRouter>
             </Provider>
 

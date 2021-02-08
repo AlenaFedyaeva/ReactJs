@@ -17,7 +17,7 @@ export default function messagesReducer(store = initState, action) {
         case SEND_MESSAGE:
 
             const newMsgId = store.length;
-            return [store,
+            return [...store,
                 {
                     message: action.message,
                     author: message.author,

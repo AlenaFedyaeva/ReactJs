@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import MessageField from '../MessageField';
 import SendMessage from '../SendMessage';
 
-import { sendMessage } from '../../store/actions/message'
+import { sendMessage } from '../../store/actions/message.js'
 
 
 class Messages extends React.Component {
@@ -53,12 +53,6 @@ class Messages extends React.Component {
         super(props);
         console.log('constructor', typeof (this.props.getChats));
         const newMsgId = this.state.messages.length;
-        //         this.setState({
-        //             chats: {
-        //                 ...this.state.chats, { newMsgId: { name: this.props.chatName } }
-        //         }
-        // });
-
         console.log("add new chat from message ", this.props.ttt);
     }
 
@@ -67,22 +61,25 @@ class Messages extends React.Component {
         getChats: PropTypes.func.isRequired,
         ttt: PropTypes.string
     };
-    componentDidMount() {
-        console.log('componentDidMount from messages', "add - ", this.props.ttt);
-    };
-    componentDidUpdate() {
-        console.log('componentDidUpdate from messages', "", this.props.getChats({ hello: "Hello from message" }));
-    };
 
     static defaultProps = {
         chatId: 1,
         messages: [],
         ttt: ""
     }
-    componentWillUnmount() {
-        clearTimeout(this.state.timeout);
-        this.setState({ timeout: null });
-    }
+
+    // componentDidMount() {
+    // console.log('componentDidMount from messages', "add - ", this.props.ttt);
+    // };
+    // componentDidUpdate() {
+    // console.log('componentDidUpdate from messages', "", this.props.getChats({ hello: "Hello from message" }));
+    // };
+
+
+    // componentWillUnmount() {
+    // clearTimeout(this.state.timeout);
+    // this.setState({ timeout: null });
+    // }
     send = objMsg => {
         const newMsgId = this.state.messages.length;
         this.setState({
@@ -96,22 +93,22 @@ class Messages extends React.Component {
         // debugger
         this.setState({ chats: { ...chats } });
 
-        const timeout = setTimeout(
-            () => {
-                const newId = this.state.messages.length;
-                this.setState({
-                    messages:
-                        [...this.state.messages,
-                        { message: 'I do not answer you. I am robot', author: 'robot', id: newId }]
-                });
-                const chats = { ...this.state.chats };
-                chats[this.props.chatId].messages.push(newId);
-                this.setState({ chats: { ...chats } });
+        //     const timeout = setTimeout(
+        //         () => {
+        //             const newId = this.state.messages.length;
+        //             this.setState({
+        //                 messages:
+        //                     [...this.state.messages,
+        //                     { message: 'I do not answer you. I am robot', author: 'robot', id: newId }]
+        //             });
+        //             const chats = { ...this.state.chats };
+        //             chats[this.props.chatId].messages.push(newId);
+        //             this.setState({ chats: { ...chats } });
 
-            },
-            1000
-        );
-        this.setState({ timeout });
+        //         },
+        //         1000
+        //     );
+        //     this.setState({ timeout });
 
     }
 
@@ -123,29 +120,33 @@ class Messages extends React.Component {
             console.log("messageStore ! ", this.props.messagesStore);
         }
 
-        debugger
-        return <div className={'sendmessages'} >
-
-            <h2> Chat name:  {this.state.chats[this.props.chatId].name}
+        // debugger
+        return (<div className={'sendmessages'} >
+            <h2> Messages</h2>
+            <h2> Chat name: {this.props.chatId}
+                {/* {this.state.chats[this.props.chatId].name} */}
                 <span>        </span>
                 <Link to='/profile'>profile </Link>
             </h2>
+
             <MessageField messages={msg.filter(
                 ({ id }) => this.state.chats[this.props.chatId].messages.includes(id))} />
+
+
             <SendMessage send={this.send} />
 
-        </div >;
+        </div >);
 
     }
 }
 
+export default Messages;
+// const mapStateToProps = store => ({
+//     messagesStore: store.messagesReducer
+// });
 
-const mapStateToProps = store => ({
-    messagesStore: store.messagesReducer
-});
+// const mapDispatchToProps = {
+//     sendMessage: sendMessage
+// };
 
-const mapDispatchToProps = {
-    sendMessage: sendMessage
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Messages);
+// export default connect(mapStateToProps, mapDispatchToProps)(Messages);

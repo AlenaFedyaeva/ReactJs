@@ -4,7 +4,7 @@ import Router from './Router.jsx';
 import '../styles/Layout.css'
 
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
-export default class Layout extends React.Component {
+class Layout extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,6 +30,45 @@ export default class Layout extends React.Component {
         this.setState({ chatName: event.target.value });
     }
     render() {
+        return (
+            <div className='cont'>
+                <div className='leftcol'>
+                    <h2>left col</h2>
+                    <nav>
+                        {this.state.chats.map((item, index) => {
+                            return (
+                                <div key={`kdiv_${index + 1}`}>
+                                    <Link to={`/chat/${index + 1}`}
+                                        key={`klink_${index + 1}`}> {item}</Link>
+                                </div>
+                            );
+                        })}
+                    </nav>
+
+                    <div style={{ backgroundColor: "white" }}>
+                        <label> chat name</label>
+                        <textarea
+                            onChange={this.textChanged} />
+
+                        <button
+                            onClick={this.addChat}>
+                            add chat
+                                </button>
+                    </div>
+
+                </div>
+                <div className='rightcol'>
+                    <h2>rightcol</h2>
+                    <Router
+                        getChats={this.getChats}
+                        chatName={this.state.chatName}
+                    />
+                </div>
+            </div>
+
+        )
+    }
+    renderNo() {
         return (
             <div className='cont'>
                 <div className='leftcol'>
@@ -64,4 +103,10 @@ export default class Layout extends React.Component {
             </div>
         );
     }
+}
+
+export default () => {
+    return (
+        <Layout />
+    )
 }
